@@ -1,0 +1,3 @@
+#!/bin/bash
+
+PERL5LIB=orgblog-pl/lib perl orgblog-pl/bin/orgblog.pl -s
