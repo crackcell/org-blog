@@ -401,22 +401,21 @@ sub render_tmpl {
 	}
 
 	### render category
-
 	`mkdir -p $output_path/categories`;
 	foreach my $category_name (keys %{$category_meta_dict_ptr}) {
 		next if $category_name eq "";
 		render_index($category_meta_dict_ptr->{$category_name}, \@index_category_list,
 					 "$tmpl_path/category.html",
 					 "$output_path/categories/$category_name.html");
+		render_feed($category_meta_dict_ptr->{$category_name}, "$tmpl_path/feed.xml",
+					"$output_path/categories/$category_name.xml");
 	}
 
 	### redner index
-
 	render_index($post_meta_list_ptr, \@index_category_list,
 				 "$tmpl_path/index.html", "$output_path/index.html");
 
-	### render rss
-
+	### render feed
 	render_feed($post_meta_list_ptr, "$tmpl_path/feed.xml", "$output_path/feed.xml");
 }
 

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-PERL5LIB=orgblog-pl/lib perl orgblog-pl/bin/orgblog.pl -i ./forge -t ./templates -o ./
