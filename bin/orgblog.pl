@@ -25,9 +25,10 @@ sub usage {
 	print("orgblog.pl\n");
 	print("Usage: -h -i -t -o -s\n");
 	print("  -h : show help message\n");
-	print('  -i $org_file_folder: specify path for .org files', "\n");
-	print('  -t $template_path: specify path for .tmpl files', "\n");
-	print('  -o $output_path: specify path for output files', "\n");
+	print('  -i $org_file_folder : specify path for .org files', "\n");
+	print('  -t $template_path : specify path for .tmpl files', "\n");
+	print('  -o $output_path : specify path for output files', "\n");
+	print('  -b $base_url : specify base url', "\n");
 	print('  -s : launch a simple http server', "\n");
 }
 
@@ -495,16 +496,18 @@ sub path_rel2abs {
 my %opts;
 
 $opts{'i'} = "";
+$opts{'b'} = "";
 $opts{'t'} = "";
 $opts{'o'} = "";
-getopts('hsi:t:o:', \%opts);
+getopts('hsi:t:o:b:', \%opts);
 
 if (exists $opts{'s'}) {
 	my $server = HTTP::Server::Brick->new(port => 8080);
 	$server->mount( '/' => {path => './'});
 	$server->start;
 } elsif (exists $opts{'h'} || length($opts{'i'}) == 0 ||
-	length($opts{'t'}) == 0 || length($opts{'o'}) == 0) {
+	length($opts{'t'}) == 0 || length($opts{'o'}) == 0 ||
+	length($opts{'b'}) == 0) {
 	usage();
 	exit 0;
 }
@@ -516,7 +519,7 @@ my %category_meta_dict;
 ### 1. generate post meta info
 my $org_path = $opts{'i'};
 my $output_path = $opts{'o'} . "/";
-my $base_url = "http://blog.crackcell.com/";
+my $base_url = $opts{'b'} . "/";
 gen_post_meta($org_path, $output_path, $base_url, \@post_meta_list);
 
 ### 2. export org files to html
