@@ -16,6 +16,9 @@
   3. 读取-t指定的页面模板目录，渲染主页、类别页、正文页面和feed页
 * 使用方法
   参考例子：[[https://github.com/crackcell/crackcell.github.com]]
+  1. 将Orgblog-pl拷贝到博客根目录下
+  2. 准备好模板文件（index.html、feed.xml、category.html、post.html）和待导入的Org文件
+  3. 查看orgblog-pl/bin/orgblog，修改相应参数，在根目录下执行./orgblog-pl/bin/orgblog即可
 ** 文件用途说明
    - bin/orgblog.pl：主程序文件
    - bin/orgblog：启动的shell脚本
