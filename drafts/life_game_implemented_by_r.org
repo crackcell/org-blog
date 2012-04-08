@@ -1,0 +1,27 @@
+# -*- org -*-
+
+#+TITLE: Life Game的R实现
+#+AUTHOR: Menglong Tan
+#+EMAIL: tanmenglong AT gmail DOT com
+
+* Life Game
+  生命游戏（Game of Life），又称生命棋，是英国数学家约翰·何顿·康威（John Horton Conway）在1970年发明的细胞自动机（cellular automaton，也翻译成「格状自动机」）。[fn:1]
+  [[./life_game_live.gif]]
+* 规则
+  整个游戏发生在一个二维格子矩阵世界，每个格子住着一个细菌。细菌的只有存活和死亡2种状态。整个世界不断在迭代，细菌在下一个迭代里的状态由相邻的8个格子中的细菌数决定，规则如下：
+  1. 少于2个，死亡，因为群落不发达
+  2. 2个或3个，继续存活
+  3. 超过3个，死亡，因为食物不够
+  4. 邻居为3个的死亡细胞，复活
+* R实现
+
+
+[fn:1] Wikipedia, [[http://zh.wikipedia.org/wiki/%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F]]
+
+
+
+
+
+
+
+

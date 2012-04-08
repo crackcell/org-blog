@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	 xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	 xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns:atom="http://www.w3.org/2005/Atom"
+	 xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	 xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+
+<channel>
+  <title>Searcher's Log</title>
+  <atom:link href="http://blog.crackcell.com/feed/" rel="self" type="application/rss+xml" />
+  <link>http://blog.crackcell.com</link>
+  <description>A code monkey's note on c c++ perl r erlang and search engine</description>
+  <language>zh_CN</language>
+  <lastBuildDate><TMPL_VAR NAME="LAST_BUILD_DATE"></lastBuildDate>
+
+<!--
+  <image>
+	<title>Searcher's Log</title>
+	<url></url>
+	<link>http://www.oreilly.com/example/</link>
+	<width>88</width>
+	<height>31</height>
+	<description>A nice logo for the feed</description>
+  </image>
+-->
+
+<TMPL_LOOP NAME="POST_LIST">
+  <item>
+	<title><TMPL_VAR NAME="TITLE"></title>
+	<author>crackcell</author>
+	<link><TMPL_VAR NAME="ABS_URL"></link>
+	<pubDate><TMPL_VAR NAME="DATE"></pubDate>
+	<description><![CDATA[<TMPL_VAR NAME="CONTENT">]]></description>
+  </item>
+</TMPL_LOOP>
+
+</channel>
+</rss>

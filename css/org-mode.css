@@ -1,0 +1,12 @@
+#text-table-of-contents {
+	margin : 20px;
+}
+
+.outline-text-2 {
+	margin : 20px;
+}
+
+pre {
+	word-wrap : break-word;
+	font-family : "inconsolata";
+}

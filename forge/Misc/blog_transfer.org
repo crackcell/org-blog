@@ -1,0 +1,15 @@
+# -*- org -*-
+
+#+TITLE: 博客迁移记
+#+AUTHOR: Menglong Tan
+#+EMAIL: tanmenglong AT gmail DOT com
+
+* 博客迁移
+  半个月前，vps服务商发来邮件，说机房报告我的vps在攻击别人。大概看了下应该是被黑了，挂了木马。想着反正博客老是报503错误。为了一劳永逸，初步考虑把迁移博客迁移到github page。一直都是用emacs org-mode来写博客，也适合是用静态内容生成的方式。看了下github上[[https://github.com/mojombo/jekyll/][jekyll]]等工具，都觉得不怎么顺手，就花了2小时用perl写了个把emacs org格式的文件生成博客的工具[[https://github.com/crackcell/orgblog-pl][orgblog-pl]]。不过github生成页面的速度让我略不爽。最后把博客迁移到了[[http://sae.sina.com.cn/][sae]]。目前一切顺利。
+* 写博简史
+  06年的时候开始写博客，搬家了好几次，由于倒数据麻烦，每次搬家反而成了清洗劣质内容的过程。
+  - 2006~2008：csdn，csdn的博客系统体验不好，当时老出问题
+  - 2008~2010：javaeye，在自己博客发招聘被封id，内容全丢了，发邮件给管理员没回应。不过客观来说je的博客体验不错
+  - 2010~2012：vps+独立域名
+  - 2012~现在：sina app engine+独立域名
+  真心希望，以后能不用折腾，多看点书，多写点博客

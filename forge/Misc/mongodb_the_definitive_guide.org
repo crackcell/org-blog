@@ -1,0 +1,51 @@
+# -*- org -*-
+
+#+TITLE: 《MongoDB权威指南》读书笔记
+#+AUTHOR: crackcell
+#+EMAIL: tanmenglong AT gmail DOT com
+
+* 基本概念
+  - 文档：key-value的集合
+  - 集合：文档的集合
+  - 数据库：集合的集合
+   - admin：root数据库
+   - local：本地数据库，可以用来存放任意的本地集合，数据不会被复制
+   - config：配置数据库
+* 基本数据类型
+  - null
+  - boolean
+  - 32位int（shell没有，会被转换成64位float）
+  - 64位int（shell没有，会被转换成64位float）
+  - 64位float
+  - 字符串
+  - 对象id
+  - 日期
+  - javascrupt代码
+  - 二进制数据
+  - 最大值（shell里面没有）
+  - 最小值（shell里面没有）
+  - 未定义：undefined
+  - 数组
+  - 嵌套文档
+* 基本CRUD操作
+  - 插入
+   - 数据库.集合[.子集合].insert()
+   - 数据库.集合[.子集合].save()，shell函数，不存在就增加，存在就更新
+  - 检索
+   - 检索出一个：数据库.集合[.子集合].findOne()
+   - 检索多个：数据库.集合[.子集合].find()
+  - 更新：数据库.集合[.子集合].update()
+  - 删除：数据库.集合[.子集合].remove()
+* 原子修改器
+  - $set：设置一个字段
+  - $unset：删除一个字段
+  - $push：向一个数组追加一个元素
+  - $pushAll：向一个数组最佳多个元素
+  - $pull：从数组中删除一个元素
+  - $pushAll：从数组中删除多个元素
+  - $inc：自增
+  - $bit：位操作
+  - $upsert：更新文档，文档不存在就创建
+* 索引
+  - 创建索引：数据库.集合[.子集].ensureIndex()
+  - 获取查询中索引使用信息：数据库.集合[.子集].explain()
