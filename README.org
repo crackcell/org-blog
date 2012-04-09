@@ -35,3 +35,8 @@ git clone git@github.com:crackcell/orgblog-pl.git
    - o：指定博客输出的路径
    - t：指定模板路径
    - b：指定博客的base url。因为生成的站点的链接全部使用绝对路径
+* 常见问题解决
+  * Undefined subroutine &Date::Manip::UnixDate
+#+BEGIN_SRC shell
+cpan Date::Manip
+#+END_SRC
