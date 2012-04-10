@@ -10,6 +10,17 @@
   1. 支持页面模板，模板语法[[http://search.cpan.org/~samtregar/HTML-Template-2.6/Template.pm][HTML::Template]]
   2. 支持总页面以及分类页面的feed输出
   3. 支持Org格式文件读入，以及附带的图片的导入。
+* 安装
+** 安装依赖包
+#+BEGIN_SRC shell
+$ cpan Date::Manip
+$ cpan HTML::Template
+$ cpan Getopt::Std
+$ cpan File::Basename
+$ cpan File::Find::Rule
+$ cpan HTTP::Server::Brick
+$ cpan Storable
+#+END_SRC
 * 导入过程
   1. 读取-i指定的Org文件的目录，遍历org文件，如果没有对应的导出html文件，调用emacs导出html
   2. 读取导出的html文件，读取meta信息中的generated字段，作为日期，title作为标题，org生成的TOC以下的内容为主干。将img指向的本地文件拷贝出来。读取Org文件所在的目录，作为类别
@@ -35,8 +46,3 @@ git clone git@github.com:crackcell/orgblog-pl.git
    - o：指定博客输出的路径
    - t：指定模板路径
    - b：指定博客的base url。因为生成的站点的链接全部使用绝对路径
-* 常见问题解决
-  * Undefined subroutine &Date::Manip::UnixDate
-#+BEGIN_SRC shell
-cpan Date::Manip
-#+END_SRC
