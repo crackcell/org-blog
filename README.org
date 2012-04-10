@@ -12,15 +12,15 @@
   3. 支持Org格式文件读入，以及附带的图片的导入。
   测试过支持的平台：Mac OS X Lion, ubuntu 11.10, Cygwin
 * 安装
-  1. 安装依赖包
-	 $ cpan Date::Manip HTML::Template Getopt::Std File::Basename cpan File::Find::Rule cpan HTTP::Server::Brick Storable
-  2. clone本站，本站及时一个包含博客生成工具的示例
-	 $ git clone git@github.com:crackcell/orgblog-pl.git
-  3. 把forge目录下org文件替换成你自己的
-  4. 按需修改template目录下的页面模板
-  5. 修改orgblog-pl/bin/orgblog脚本，将 http://blog.crackcell.com/ 替换成你自己的站点
-  6. 在crackcell.github.com的根目录执行./orgblog-pl/bin/orgblog
-  7. 站点生成好了
+** 安装依赖包
+   $ cpan Date::Manip HTML::Template Getopt::Std File::Basename cpan File::Find::Rule cpan HTTP::Server::Brick Storable
+** 安装orgblog
+  1. git clone orgblog-pl，本站及时一个包含博客生成工具的示例
+  2. 把forge目录下org文件替换成你自己的
+  3. 按需修改template目录下的页面模板
+  4. 修改orgblog-pl/bin/orgblog脚本，将 http://blog.crackcell.com/ 替换成你自己的站点
+  5. 在crackcell.github.com的根目录执行./orgblog-pl/bin/orgblog
+  6. 站点生成好了
 * 导入过程
   1. 读取-i指定的Org文件的目录，遍历org文件，如果没有对应的导出html文件，调用emacs导出html
   2. 读取导出的html文件，读取meta信息中的generated字段，作为日期，title作为标题，org生成的TOC以下的内容为主干。将img指向的本地文件拷贝出来。读取Org文件所在的目录，作为类别
