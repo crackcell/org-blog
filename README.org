@@ -13,7 +13,9 @@
   测试过支持的平台：Mac OS X Lion, ubuntu 11.10, Cygwin
 * 安装
 ** 安装依赖包
-   $ cpan Date::Manip HTML::Template Getopt::Std File::Basename cpan File::Find::Rule cpan HTTP::Server::Brick Storable
+#+BEGIN_SRC shell
+$ cpan Date::Manip HTML::Template Getopt::Std File::Basename cpan File::Find::Rule cpan HTTP::Server::Brick Storable
+#+END_SRC
 ** 安装orgblog
   1. git clone orgblog-pl，本站及时一个包含博客生成工具的示例
   2. 把forge目录下org文件替换成你自己的
