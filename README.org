@@ -13,15 +13,15 @@
   测试过支持的平台：Mac OS X Lion, ubuntu 11.10, Cygwin
 * 安装
   1. 安装依赖包
-: $ cpan Date::Manip
-: $ cpan HTML::Template
-	 $ cpan Getopt::Std
-	 $ cpan File::Basename
-	 $ cpan File::Find::Rule
-	 $ cpan HTTP::Server::Brick
-	 $ cpan Storable
+	 - $ cpan Date::Manip
+	 - $ cpan HTML::Template
+	 - $ cpan Getopt::Std
+	 - $ cpan File::Basename
+	 - $ cpan File::Find::Rule
+	 - $ cpan HTTP::Server::Brick
+	 - $ cpan Storable
   2. clone本站，本站及时一个包含博客生成工具的示例
-	 $ git clone git@github.com:crackcell/orgblog-pl.git
+	 - $ git clone git@github.com:crackcell/orgblog-pl.git
   3. 把forge目录下org文件替换成你自己的
   4. 按需修改template目录下的页面模板
   5. 修改orgblog-pl/bin/orgblog脚本，将 http://blog.crackcell.com/ 替换成你自己的站点
