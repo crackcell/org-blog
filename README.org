@@ -23,7 +23,7 @@ $ cpan Storable
 #+END_SRC
   2. clone本站，本站及时一个包含博客生成工具的示例
 #+BEGIN_SRC shell
-git clone git@github.com:crackcell/orgblog-pl.git
+	 git clone git@github.com:crackcell/orgblog-pl.git
 #+END_SRC
   3. 把forge目录下org文件替换成你自己的
   4. 按需修改template目录下的页面模板
