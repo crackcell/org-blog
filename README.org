@@ -13,8 +13,8 @@
   测试过支持的平台：Mac OS X Lion, ubuntu 11.10, Cygwin
 * 安装
   1. 安装依赖包
-	 $ cpan Date::Manip
-	 $ cpan HTML::Template
+: $ cpan Date::Manip
+: $ cpan HTML::Template
 	 $ cpan Getopt::Std
 	 $ cpan File::Basename
 	 $ cpan File::Find::Rule
