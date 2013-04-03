@@ -15,7 +15,7 @@
   2. 读取导出的html文件，读取meta信息中的generated字段，作为日期，title作为标题，org生成的TOC以下的内容为主干。将img指向的本地文件拷贝出来。读取Org文件所在的目录，作为类别
   3. 读取-t指定的页面模板目录，渲染主页、类别页、正文页面和feed页
 * 使用方法
-  参考例子：[[https://github.com/crackcell/crackcell.github.com]]
+  效果参考：[[http://blog.crackcell.com]]
   1. 将Org-blog拷贝到博客根目录下
   2. 准备好模板文件（index.html、feed.xml、category.html、post.html）和待导入的Org文件
   3. 查看org-blog/bin/org-blog，修改相应参数，在根目录下执行./orgblog-pl/bin/orgblog即可
@@ -30,3 +30,4 @@
    - o：指定博客输出的路径
    - t：指定模板路径
    - b：指定博客的base url。因为生成的站点的链接全部使用绝对路径
+   - d：指定关键词提取词典
