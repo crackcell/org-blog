@@ -16,6 +16,7 @@ use HTTP::Server::Brick;
 
 #--------------- global variable --------------
 
+my @keyword_dict;
 
 #------------------ function ------------------
 
@@ -23,13 +24,14 @@ use HTTP::Server::Brick;
 ##! @todo: Show help message
 sub usage {
 	print("orgblog.pl\n");
-	print("Usage: -h -i -t -o -s\n");
-	print("  -h : show help message\n");
+	print("Usage: -h -i -t -d -o -s\n");
+	print("  -h                  : show help message\n");
 	print('  -i $org_file_folder : specify path for .org files', "\n");
-	print('  -t $template_path : specify path for .tmpl files', "\n");
-	print('  -o $output_path : specify path for output files', "\n");
-	print('  -b $base_url : specify base url', "\n");
-	print('  -s : launch a simple http server', "\n");
+	print('  -t $template_path   : specify path for .tmpl files', "\n");
+	print('  -o $output_path     : specify path for output files', "\n");
+	print('  -b $base_url        : specify base url', "\n");
+	print('  -d $file            : keyword dict', "\n");
+	print('  -s                  : launch a simple http server', "\n");
 }
 
 ##! @todo: Dump a list for debug
@@ -60,6 +62,8 @@ sub dump_post_meta {
 	print "url: ", $meta_ptr->{'url'}, "\n";
 	print "abs_url: ", $meta_ptr->{'abs_url'}, "\n";
 	print "url_img_path: ", $meta_ptr->{'url_img_path'}, "\n";
+	print "keywords: ", $meta_ptr->{'keywords'}, "\n";
+	print "description: ", $meta_ptr->{'description'}, "\n";
 }
 
 ##! @todo: Dump category meta
@@ -140,6 +144,8 @@ sub gen_post_meta {
 		my $title = "";
 		my $date = "";
 		my $content = "";
+		my $keywords = "";
+		my $description = "";
 		if (not extract_html($meta_ptr->{'org_html_file'},
 							 \$title, \$date, \$content)) {
 
@@ -155,6 +161,13 @@ sub gen_post_meta {
 			my $url = $url_path . $meta_ptr->{'basename'} . ".html";
 			my $abs_url = $base_url . $url;
 			my $url_img_path = $url_path . $meta_ptr->{'basename'} . "/";
+
+			extract_keywords(\$content, \$keywords);
+			extract_description(\$content, \$description);
+			$description = $title . " " . $description;
+
+			$meta_ptr->{'keywords'} = $keywords;
+			$meta_ptr->{'description'} = $description;
 
 			$meta_ptr->{'post_path'} = $post_path;
 			$meta_ptr->{'post_file'} = $post_file;
@@ -362,7 +375,7 @@ sub render_tmpl {
 
 		# get img list
 		my @img_list = $meta_ptr->{'content'} =~ /<img src="(.*?)"/g;
-		my $category = $meta_ptr->{"category"};
+		my $category = $meta_ptr->{'category'};
 
 		# mkdir for post and images
 		if (scalar @img_list > 0) {
@@ -383,6 +396,9 @@ sub render_tmpl {
 		$post_tmpl->param(TITLE => $meta_ptr->{'title'});
 		$post_tmpl->param(DATE => $meta_ptr->{'raw_date'});
 		$post_tmpl->param(CONTENT => $meta_ptr->{'content'});
+
+		$post_tmpl->param(KEYWORDS => $meta_ptr->{'keywords'});
+		$post_tmpl->param(DESCRIPTION => $meta_ptr->{'description'});
 
 		write_file($meta_ptr->{'post_file'}, $post_tmpl->output);
 
@@ -475,6 +491,35 @@ sub extract_html {
 	return not ($find_title && $find_date && $find_content);
 }
 
+sub extract_keywords {
+	my $content_ptr = shift;
+	my $keywords_ptr = shift;
+
+	foreach my $term (@keyword_dict) {
+		if (${$content_ptr} =~ /$term/ && length($term) > 6) {
+			${$keywords_ptr} = ${$keywords_ptr} . "," . $term;
+		}
+	}
+}
+
+sub extract_description {
+	my $content_ptr = shift;
+	my $description_ptr = shift;
+
+	my $desp = ${$content_ptr};
+
+	$desp =~ s/[\r\n]//g;
+	if (not $desp =~ /<div id="text-table-of-contents">(.*?)<\/div>/) {
+		return;
+	}
+
+	my $desp = $1;
+	$desp =~ s/<.+?>/ /g;
+	$desp =~ s/ +/ /g;
+
+	${$description_ptr} = $desp;
+}
+
 ##! @todo: Change relative path to absolute in HTML
 ##! @param: 0 => base url
 ##! @param: 1 => path
@@ -499,7 +544,8 @@ $opts{'i'} = "";
 $opts{'b'} = "";
 $opts{'t'} = "";
 $opts{'o'} = "";
-getopts('hsi:t:o:b:', \%opts);
+$opts{'d'} = "";
+getopts('hsi:t:o:b:d:', \%opts);
 
 if (exists $opts{'s'}) {
 	my $server = HTTP::Server::Brick->new(port => 8080);
@@ -507,7 +553,7 @@ if (exists $opts{'s'}) {
 	$server->start;
 } elsif (exists $opts{'h'} || length($opts{'i'}) == 0 ||
 	length($opts{'t'}) == 0 || length($opts{'o'}) == 0 ||
-	length($opts{'b'}) == 0) {
+	length($opts{'b'}) == 0 || length($opts{'d'}) == 0) {
 	usage();
 	exit 0;
 }
@@ -515,6 +561,13 @@ if (exists $opts{'s'}) {
 ### 0. init data
 my @post_meta_list;
 my %category_meta_dict;
+
+open(D, $opts{'d'}) or die "open keyword dict fail";
+while (<D>) {
+	chomp;
+	push(@keyword_dict, $_);
+}
+close(D);
 
 ### 1. generate post meta info
 my $org_path = $opts{'i'};
