@@ -1,6 +1,0 @@
-#!/bin/bash
-
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LIB_PATH="$DIR/../lib"
-echo $LIB_PATH
-PERL5LIB=$LIB_PATH perl $DIR/org-blog.pl -b "http://blog.crackcell.com/" -i ./forge -t ./templates -o ./ -d $DIR/../conf/dict_chs_computer.utf8.txt

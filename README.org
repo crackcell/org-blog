@@ -1,33 +1,8 @@
 # -*- org -*-
 
-#+TITLE: Orgblog-pl
+#+TITLE: org-blog
 #+AUTHOR: Menglong Tan
 #+EMAIL: tanmenglong AT gmail DOT com
 
 * 简介
-  Org-blog是一个用Perl写的将Emacs Org格式文件转换静态博客的工具。如果你使用Org来写博客，并想利用类似Github pages这样的静态页面host服务来搭建博客，Orgblog-pl也许是一个不错的选择。
-  目前支持以下功能：
-  1. 支持页面模板，模板语法[[http://search.cpan.org/~samtregar/HTML-Template-2.6/Template.pm][HTML::Template]]
-  2. 支持总页面以及分类页面的feed输出
-  3. 支持Org格式文件读入，以及附带的图片的导入。
-* 导入过程
-  1. 读取-i指定的Org文件的目录，遍历org文件，如果没有对应的导出html文件，调用emacs导出html
-  2. 读取导出的html文件，读取meta信息中的generated字段，作为日期，title作为标题，org生成的TOC以下的内容为主干。将img指向的本地文件拷贝出来。读取Org文件所在的目录，作为类别
-  3. 读取-t指定的页面模板目录，渲染主页、类别页、正文页面和feed页
-* 使用方法
-  效果参考：[[http://blog.crackcell.com]]
-  1. 将Org-blog拷贝到博客根目录下
-  2. 准备好模板文件（index.html、feed.xml、category.html、post.html）和待导入的Org文件
-  3. 查看org-blog/bin/org-blog，修改相应参数，在根目录下执行./orgblog-pl/bin/orgblog即可
-** 文件用途说明
-   - bin/org-blog.pl：主程序文件
-   - bin/org-blog：启动的shell脚本
-   - bin/simpleserver：启动简单的本地http服务器用于调试
-   - 3rd：第三方库archive文件
-   - lib：第三方库
-** 主程序文件参数说明
-   - i：指定org文件路径
-   - o：指定博客输出的路径
-   - t：指定模板路径
-   - b：指定博客的base url。因为生成的站点的链接全部使用绝对路径
-   - d：指定关键词提取词典
+  org-blog是一个用Go写的将Emacs Org格式文件转换静态博客的工具。如果你使用Org来写博客，并想利用类似Github pages这样的静态页面host服务来搭建博客，org-blog也许是一个不错的选择。
